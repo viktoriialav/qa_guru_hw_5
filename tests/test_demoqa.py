@@ -1,5 +1,6 @@
 from selene import browser, have, command
 import os
+from selenium.webdriver.common.keys import Keys
 
 
 def test_demoqa_practice_form():
@@ -39,9 +40,9 @@ def test_demoqa_practice_form():
 
 def test_demoqa_practice_form_2():
     # Other ways to enter birthdate, city, state and subject
-
     # Full all fields
     browser.open('/automation-practice-form')
+
     # State and city
     browser.element('#state').click()
     browser.element('#react-select-3-option-0').click()
@@ -50,12 +51,8 @@ def test_demoqa_practice_form_2():
     # Subjects
     browser.element('#subjectsInput').type('m').press_enter()
     browser.element('#subjectsInput').type('ch').press_enter()
-    # browser.element('#subjectsInput').perform(command.js.scroll_into_view).type('m').press_enter()
-    # browser.element('#subjectsInput').perform(command.js.scroll_into_view).type('ch').press_enter()
     # Birthday
-    from selenium.webdriver.common.keys import Keys
     browser.element('#dateOfBirthInput').send_keys(Keys.CONTROL, 'a').type('05.17.1993').press_enter()
-
 
     browser.element('#firstName').type('Viktoriia')
     browser.element('#lastName').type('Lav')
