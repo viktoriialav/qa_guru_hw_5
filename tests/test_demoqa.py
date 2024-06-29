@@ -1,4 +1,4 @@
-from selene import browser, have
+from selene import browser, have, command
 import os
 
 
@@ -31,6 +31,51 @@ def test_demoqa_practice_form():
                                                                      '8800222334',
                                                                      '17 May,1993',
                                                                      'Chemistry',
+                                                                     'Sports, Reading',
+                                                                     'photo.png',
+                                                                     '144 Broadway, suit 12',
+                                                                     'NCR Gurgaon'))
+
+
+def test_demoqa_practice_form_2():
+    # Other ways to enter birthdate, city, state and subject
+
+    # Full all fields
+    browser.open('/automation-practice-form')
+    # State and city
+    browser.element('#state').click()
+    browser.element('#react-select-3-option-0').click()
+    browser.element('#city').click()
+    browser.element('#react-select-4-option-1').click()
+    # Subjects
+    browser.element('#subjectsInput').type('m').press_enter()
+    browser.element('#subjectsInput').type('ch').press_enter()
+    # browser.element('#subjectsInput').perform(command.js.scroll_into_view).type('m').press_enter()
+    # browser.element('#subjectsInput').perform(command.js.scroll_into_view).type('ch').press_enter()
+    # Birthday
+    from selenium.webdriver.common.keys import Keys
+    browser.element('#dateOfBirthInput').send_keys(Keys.CONTROL, 'a').type('05.17.1993').press_enter()
+
+
+    browser.element('#firstName').type('Viktoriia')
+    browser.element('#lastName').type('Lav')
+    browser.element('#userEmail').type('newuser@gmail.com')
+    browser.element('[for="gender-radio-2"]').click()
+    browser.element('#userNumber').type('8800222334')
+    browser.element('[for="hobbies-checkbox-1"]').click()
+    browser.element('[for="hobbies-checkbox-2"]').click()
+    browser.element('#currentAddress').type('144 Broadway, suit 12')
+    browser.element('#uploadPicture').send_keys(os.path.abspath('photo.png'))
+    browser.element('#submit').click()
+
+    # Test that the form was successfully completed
+    browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
+    browser.element('.table').all("td").even.should(have.exact_texts('Viktoriia Lav',
+                                                                     'newuser@gmail.com',
+                                                                     'Female',
+                                                                     '8800222334',
+                                                                     '17 May,1993',
+                                                                     'Maths, Chemistry',
                                                                      'Sports, Reading',
                                                                      'photo.png',
                                                                      '144 Broadway, suit 12',
