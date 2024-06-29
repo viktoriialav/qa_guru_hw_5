@@ -1,6 +1,7 @@
 from selene import browser, have
 import os
 
+
 def test_demoqa_practice_form():
     # Full all fields
     browser.open('/automation-practice-form')
