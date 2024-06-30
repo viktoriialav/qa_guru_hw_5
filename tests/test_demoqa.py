@@ -21,7 +21,7 @@ def test_demoqa_practice_form():
     browser.element('#currentAddress').type('144 Broadway, suit 12')
     browser.element('#react-select-3-input').type('NCR').press_enter()
     browser.element('#react-select-4-input').type('Gurgaon').press_enter()
-    browser.element('#uploadPicture').send_keys(os.path.abspath('photo.png'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('../resources/photo.png'))
     browser.element('#submit').click()
 
     # Test that the form was successfully completed
@@ -62,7 +62,7 @@ def test_demoqa_practice_form_2():
     browser.element('[for="hobbies-checkbox-1"]').click()
     browser.element('[for="hobbies-checkbox-2"]').click()
     browser.element('#currentAddress').type('144 Broadway, suit 12')
-    browser.element('#uploadPicture').send_keys(os.path.abspath('photo.png'))
+    browser.element('#uploadPicture').send_keys(os.path.abspath('../resources/photo.png'))
     browser.element('#submit').click()
 
     # Test that the form was successfully completed
